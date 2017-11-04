@@ -24,8 +24,8 @@ import static de.openknowledge.sample.cloud.aws.paas.dynamodb.common.PlaygroundT
 public class AwsDynamoDbPlayground {
 
     private static PlaygroundToggle LIST_TABLE = OFF;
-    private static PlaygroundToggle SCAN_ITEMS = OFF;
-    private static PlaygroundToggle INSERT_ITEM = OFF;
+    private static PlaygroundToggle SCAN_ITEMS = ON;
+    private static PlaygroundToggle INSERT_ITEM = ON;
     private static PlaygroundToggle UPDATE_ITEM = OFF;
     private static PlaygroundToggle QUERY_ITEMS = OFF;
     private static PlaygroundToggle DELETE_ITEM = OFF;
@@ -193,6 +193,9 @@ public class AwsDynamoDbPlayground {
          *
          *  TIP: use helper method imageToItem(...) to transform image to dynamoDB item
          */
+        
+        PutItemRequest pir = PutItemRequest.builder().tableName(TABLE_NAME).item(imageToItem(image)).build();
+        dynamoDBClient.putItem(pir);
 
     }
 
@@ -215,6 +218,9 @@ public class AwsDynamoDbPlayground {
          *
          *  TIP: use helper method printOut(Item) to log/print out single item
          */
+        
+        ScanRequest sr = ScanRequest.builder().tableName(TABLE_NAME).build();
+        dynamoDBClient.scan(sr).items().forEach(item -> printOut(item));;
     }
 
      /**
