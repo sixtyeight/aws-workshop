@@ -1,9 +1,13 @@
 package de.openknowledge.sample.cloud.aws.lambda.function;
 
+import java.util.Map;
+
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import java.util.Map;
+import de.openknowledge.sample.cloud.aws.model.HelloWorkshopRequest;
+import de.openknowledge.sample.cloud.aws.model.HelloWorkshopResponse;
 
 /**
  * Lambda function - implementing the <code>RequestHandler</code> interface with
@@ -19,7 +23,7 @@ import java.util.Map;
  * TODO implement com.amazonaws.services.lambda.runtime.RequestHandler interface
  */
 // de.openknowledge.sample.cloud.aws.lambda.function.HelloConference
-public class HelloWorkshop {
+public class HelloWorkshop implements RequestHandler<HelloWorkshopRequest, HelloWorkshopResponse> {
 
 
     private final static String ENV_VAR_PRINT_CONTEXT_INFO = "logContextInfo";
@@ -44,7 +48,15 @@ public class HelloWorkshop {
      *
      */
 
-
+    @Override
+    public HelloWorkshopResponse handleRequest(HelloWorkshopRequest arg0, Context arg1) {
+    	arg1.getLogger().log("entered handleRequest: replying with ohai");
+    	// TODO Auto-generated method stub
+    	HelloWorkshopResponse r = new HelloWorkshopResponse();
+    	r.setGreeting("ohai!");
+    	return r;
+    }
+    
     //----------  internal helper methods ------------------
 
 

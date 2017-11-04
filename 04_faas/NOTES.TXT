@@ -1,0 +1,2 @@
+export DOCKER_API_VERSION=1.23
+sam local start-api
