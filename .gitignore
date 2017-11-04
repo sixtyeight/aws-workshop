@@ -3,6 +3,7 @@
 .project
 bin/
 
+TEMP/*.jpg
 
 target/
 pom.xml.tag
