@@ -1,0 +1,15 @@
+service:
+  images:
+    service-name: "images"
+
+swarm:
+#  bind:
+#      address: 127.0.0.1
+  http:
+     port: 5000
+  context:
+       path: "/"
+
+java:
+  net:
+    preferIPv4Stack: true

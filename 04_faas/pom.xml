@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    
+  <parent>
+     <groupId>de.openknowledge.sample.cloud</groupId>
+     <artifactId>aws-excercises</artifactId>
+	 <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>aws-faas-excercises</artifactId>
+  <name>aws-faas-excercises</name>
+
+  <packaging>jar</packaging>
+    
+    <dependencies>
+
+    <!-- AWS dependencies -->        
+    <dependency>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>aws-sdk-java</artifactId>
+      <version>${aws.java.sdk.version}</version>
+      <scope>provided</scope>
+    </dependency>
+      
+    <!-- AWS lambda dependencies -->  
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-lambda-java-core</artifactId>
+      <version>${aws.lambda.java.core.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>myFirstLambdaFunction</finalName>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>${maven.shade.plugin.version}</version>
+        <configuration>
+          <createDependencyReducedPom>false</createDependencyReducedPom>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+
+  </build>
+
+</project>
